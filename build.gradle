@@ -21,6 +21,7 @@ repositories {
 	mavenCentral()
 }
 
+
 dependencies {
 	compile('com.heroku.sdk:heroku-jdbc:0.1.1')
 	compile('org.flywaydb:flyway-core')
