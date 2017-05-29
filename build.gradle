@@ -29,6 +29,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-devtools')
 	compile('org.postgresql:postgresql:42.1.1')
-	runtime('org.postgresql:postgresql')
+	runtime('org.postgresql:postgresql:42.1.1')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
