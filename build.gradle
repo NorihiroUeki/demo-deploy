@@ -1,26 +1,20 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.3.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+	ext { springBootVersion = '1.5.3.RELEASE' }
+	repositories { mavenCentral() }
+	dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'groovy'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
-repositories {
-	mavenCentral()
-}
+repositories { mavenCentral() }
+
+configurations { assertj }
 
 dependencies {
 	compile('org.flywaydb:flyway-core')
@@ -29,6 +23,14 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-devtools')
 	compile('org.postgresql:postgresql:42.1.1')
-	runtime('org.postgresql:postgresql:42.1.1')
+	compile('org.codehaus.groovy:groovy-all:2.4.11')
+	runtime('org.postgresql:postgresql')
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.assertj:assertj-core:3.2.0')
+	testCompile('org.assertj:assertj-db:1.0.1')
+	testCompile('com.ninja-squad:DbSetup:2.1.0')
+
+	assertj('org.assertj:assertj-assertions-generator:2.0.0')
+	assertj(project)
 }
