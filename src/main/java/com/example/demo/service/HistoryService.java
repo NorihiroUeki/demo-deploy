@@ -5,19 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.mybatis.dao.HistoryDao;
 import com.example.demo.mybatis.dto.History;
+import com.example.demo.mybatis.dto.HistoryExample;
+import com.example.demo.mybatis.mapper.HistoryMapper;
 
 @Service
 public class HistoryService {
 	@Autowired
-	private HistoryDao dao;
+	private HistoryMapper mapper;
 
 	public int createHistory(History history) {
-		return dao.insert(history);
+		return mapper.insertSelective(history);
 	}
 
 	public List<History> getHistories() {
-		return dao.selectAll();
+		return mapper.selectByExample(new HistoryExample());
 	}
 }

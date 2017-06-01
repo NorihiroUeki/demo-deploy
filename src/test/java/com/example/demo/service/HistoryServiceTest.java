@@ -1,4 +1,4 @@
-package com.example.demo.mybatis.dao;
+package com.example.demo.service;
 import static org.assertj.db.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
@@ -17,6 +17,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.mybatis.dto.History;
+import com.example.demo.service.HistoryService;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.Operations;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
@@ -28,9 +29,9 @@ import com.ninja_squad.dbsetup.operation.Operation;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource("/test.properties")
-public class HistoryDaoTest {
+public class HistoryServiceTest {
 	@Autowired
-	HistoryDao dao;
+	HistoryService service;
 
 	@Autowired
 	DataSource dataSource;
@@ -58,7 +59,7 @@ public class HistoryDaoTest {
 
 	@Test
 	public void 全ての履歴データが取得できる() {
-		List<History> result = dao.selectAll();
+		List<History> result = service.getHistories();
 		assertEquals(3, result.size());
 		assertEquals("Tanaka", result.get(0).getValue());
 		assertEquals("Yoshida", result.get(1).getValue());
@@ -73,7 +74,7 @@ public class HistoryDaoTest {
 		record.setValue("登録");
 
 		changes.setStartPointNow();
-		int result = dao.insert(record);
+		int result = service.createHistory(record);
 		changes.setEndPointNow();
 
 		assertEquals(1, result);
