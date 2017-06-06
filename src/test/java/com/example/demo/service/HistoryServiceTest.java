@@ -13,11 +13,9 @@ import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.mybatis.dto.History;
-import com.example.demo.service.HistoryService;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.Operations;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
@@ -28,7 +26,6 @@ import com.ninja_squad.dbsetup.operation.Operation;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@TestPropertySource("/test.properties")
 public class HistoryServiceTest {
 	@Autowired
 	HistoryService service;
